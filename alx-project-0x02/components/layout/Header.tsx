@@ -1,8 +1,8 @@
 export default function Header() {
   return (
     <header className="flex items-center justify-between bg-zinc-100 p-4">
-      <h1 className="text-3xl font-bold">
-        <a href="/" className="hover:text-zinc-900">
+      <h1 className="text-3xl text-blue font-bold">
+        <a href="/home" className="hover:text-zinc-900">
           Home
         </a>
       </h1>
