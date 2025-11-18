@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Header() {
   return (
     <header className="flex items-center justify-between bg-zinc-100 p-4">
