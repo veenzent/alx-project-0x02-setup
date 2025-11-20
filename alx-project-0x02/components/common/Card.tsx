@@ -1,4 +1,4 @@
-import { CardProps } from "@/interfaces/index";
+import { type CardProps } from "@/interfaces/index";
 
 const Card = ({ title, content }: CardProps) => {
   return (
