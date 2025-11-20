@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import Card from "@/components/common/Card";
 
 export default function Home() {
     return (
@@ -12,6 +13,14 @@ export default function Home() {
                     This is a basic home page created using Next.js. You can add
                     more content and features to this page as needed.
                 </p>
+                <Card
+                    title="Sample Card"
+                    content="This is a sample card component."
+                />
+                <Card
+                    title="Another Card"
+                    content="This is another sample card component."
+                />
             </main>
             
         </>
