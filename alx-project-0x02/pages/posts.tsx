@@ -1,19 +1,11 @@
 import Header from "@/components/layout/Header";
-import Button from "@/components/common/Button";
 import PostCard from "@/components/common/PostCard";
 import { fetchPosts } from "@/components/common/PostCard";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { type PostProps } from "@/interfaces";
 
 export default function Posts() {
     const [posts, setPosts] = useState<PostProps[]>([]);
-    // useEffect(() => {
-    //     const fetchPostsData = async () => {
-    //         const fetchedPosts = await fetchPosts();
-    //         setPosts(fetchedPosts);
-    //     };
-    //     fetchPostsData();
-    // }, []);
 
     const fetchPostsData = async () => {
         const fetchedPosts = await fetchPosts();
@@ -44,4 +36,20 @@ export default function Posts() {
             </main>
         </>
     );
+}
+
+// SSG function to fetch posts at build time but I'm actually not using this function at all.
+export async function getStaticProps() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const posts = await response.json();
+
+    return {
+        props: {
+            posts: posts.map((post: any) => ({
+                userId: post.userId,
+                title: post.title,
+                content: post.body,
+            })),
+        },
+    };
 }
