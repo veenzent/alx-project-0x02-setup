@@ -10,6 +10,24 @@ export const fetchUsers = async (): Promise<UserProps[]> => {
     return data;
 };
 
+// SSG function to fetch users at build time but I'm actually not using this function at all.
+export async function getStaticProps() {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const users = await response.json();
+
+    return {
+        props: {
+            users: users.map((post: any) => ({
+                userId: post.userId,
+                title: post.title,
+                content: post.body,
+            })),
+        },
+    };
+}
+
+
+
 const UsersPage: React.FC = () => {
     const [users, setUsers] = useState<UserProps[]>([]);
 
