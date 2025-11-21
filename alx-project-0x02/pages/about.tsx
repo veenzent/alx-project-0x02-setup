@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import Button from "@/components/common/Button";
 
 export default function About() {
     return (
@@ -14,6 +15,9 @@ export default function About() {
                     modern technologies like Next.js, TypeScript, and Tailwind
                     CSS.
                 </p>
+                <Button size="small" shape="rounded-sm" />
+                <Button size="medium" shape="rounded-md" />
+                <Button size="large" shape="rounded-full" />
             </main>
         </>
     );
