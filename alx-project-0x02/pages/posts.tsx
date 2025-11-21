@@ -1,7 +1,25 @@
 import Header from "@/components/layout/Header";
 import Button from "@/components/common/Button";
+import PostCard from "@/components/common/PostCard";
+import { fetchPosts } from "@/components/common/PostCard";
+import { useState, useEffect } from "react";
+import { type PostProps } from "@/interfaces";
 
-export default function About() {
+export default function Posts() {
+    const [posts, setPosts] = useState<PostProps[]>([]);
+    // useEffect(() => {
+    //     const fetchPostsData = async () => {
+    //         const fetchedPosts = await fetchPosts();
+    //         setPosts(fetchedPosts);
+    //     };
+    //     fetchPostsData();
+    // }, []);
+
+    const fetchPostsData = async () => {
+        const fetchedPosts = await fetchPosts();
+        setPosts(fetchedPosts);
+    };
+    fetchPostsData();
     return (
         <>
             <Header />
@@ -10,14 +28,19 @@ export default function About() {
                     Posts
                 </h1>
                 <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-                    Hello, my name is Alex and I'm a software engineer from
-                    Ukraine. I'm passionate about building web applications with
-                    modern technologies like Next.js, TypeScript, and Tailwind
-                    CSS.
+                    Hello, welcome to Alex's posts page. I'm passionate about
+                    building web applications with modern technologies like
+                    Next.js, TypeScript, and Tailwind CSS.
                 </p>
-                <Button size="small" shape="rounded-sm" />
-                <Button size="medium" shape="rounded-md" />
-                <Button size="large" shape="rounded-full" />
+
+                {posts.map((post, index) => (
+                    <PostCard
+                        key={index}
+                        userId={post.userId}
+                        title={post.title}
+                        content={post.content}
+                    />
+                ))}
             </main>
         </>
     );
